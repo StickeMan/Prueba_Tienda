@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString, IsDate, IsBoolean } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString, IsDate, IsBoolean, IsDecimal } from "class-validator";
 
 export class ProductDto {
 
@@ -10,13 +10,14 @@ export class ProductDto {
   @IsNotEmpty()
   precio: number;
 
-  @IsNumber()
+  @IsDecimal()
   IVA: number;
 
-  @IsNumber()
+  @IsDecimal()
   no_IVA: number;
 
-  @IsDate()
+  createdAt: Date;
+
   expiration_date: Date;
 
   @IsString()
