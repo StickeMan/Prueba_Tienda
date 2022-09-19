@@ -23,9 +23,8 @@ export class UserController {
   public buscarid(@Param('username') username: string): Promise<UserEntity | null> {
     return this.userService.buscarUno(username);
   }
-  
-  /**
-   * //* Actualizas los datos de un usuario.
+
+  //* Actualizas los datos de un usuario.
   @Put(':username')
   public actualizar(@Param('username') username: string, @Body() data: UserEntity) {
     return this.userService.actualizarUsuario(username, data);
@@ -36,5 +35,4 @@ export class UserController {
   public eliminar(@Param('username') username: string) {
     return this.userService.eliminarUsuario(username);
   }
-   */
 }

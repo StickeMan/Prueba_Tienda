@@ -15,7 +15,7 @@ export class UserService {
   public async crearUsuario(dataUser: CreateUserDto) {
     //return this.userRepository.save(data);
     const password = encodePassword(dataUser.password);
-    const newUser = this.userRepository.create({...dataUser, password});
+    const newUser = this.userRepository.create({ ...dataUser, password });
     return await this.userRepository.save(newUser);
   }
 
@@ -34,8 +34,7 @@ export class UserService {
     throw new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
   }
 
-/**
- * //*Method delete.
+  //*Method delete.
   public async eliminarUsuario(username: string) {
     //return this.userRepository.delete(username);
     const deleteUser = await this.userRepository.delete(username);
@@ -54,5 +53,4 @@ export class UserService {
     }
     throw new HttpException('User not found', HttpStatus.NOT_FOUND);
   }
- */
 }
