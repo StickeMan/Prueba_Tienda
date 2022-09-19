@@ -1,5 +1,5 @@
-/* eslint-disable prettier/prettier */
 import { DataSource } from 'typeorm';
+import { ProductEntity } from '../entities/product.entity';
 import { UserEntity } from '../entities/user.entity';
 
 export const DATA_SOURCE = 'DATA_SOURCE';
@@ -14,8 +14,8 @@ export const databaseProviders = {
       port: 5432,
       username: 'postgres',
       password: 'Ocsicnarf10',
-      database: 'postgres',
-      entities: [UserEntity],
+      database: 'Tienda1',
+      entities: [UserEntity, ProductEntity],
       synchronize: true,
     });
 

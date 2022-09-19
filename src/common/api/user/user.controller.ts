@@ -1,39 +1,40 @@
-/* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { UserEntity } from "src/common/entities/user.entity";
 import { UserService } from "./user.service";
 
-@Controller('api/users')
+@Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
   //* Creas un usuario.
   @Post('newUser')
   public crear(@Body() data: UserEntity) {
-    return this.userService.crear(data);
+    return this.userService.crearUsuario(data);
   }
 
   //* Obtienes todos los usuarios.
   @Get('allusers')
-  public buscar(): Promise<UserEntity[]>{
-    return this.userService.buscar();
+  public buscar(): Promise<UserEntity[]> {
+    return this.userService.buscarAll();
   }
 
   //* Obtienes solo un usuario.
-  @Get('oneuser/:id')
-  public buscarid(@Param('id', ParseIntPipe) id: number): Promise<UserEntity | null>{
-    return this.userService.buscarid(id);
+  @Get(':username')
+  public buscarid(@Param('username') username: string): Promise<UserEntity | null> {
+    return this.userService.buscarUno(username);
   }
   
-  //* Actualizas los datos de un usuario.
-  @Put(':id')
-  public actualizar(@Param('id') id:number,@Body() data: UserEntity) {
-    return this.userService.actualizar(id, data);
+  /**
+   * //* Actualizas los datos de un usuario.
+  @Put(':username')
+  public actualizar(@Param('username') username: string, @Body() data: UserEntity) {
+    return this.userService.actualizarUsuario(username, data);
   }
 
   //* Eliminas a un usuario.
-  @Delete(':id')
-  public eliminar(@Param('id') id: number) {
-    return this.userService.eliminar(id);
+  @Delete(':username')
+  public eliminar(@Param('username') username: string) {
+    return this.userService.eliminarUsuario(username);
   }
+   */
 }

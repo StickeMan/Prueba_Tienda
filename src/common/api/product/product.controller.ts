@@ -1,39 +1,45 @@
-/* eslint-disable prettier/prettier */
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
 import { ProductEntity } from "src/common/entities/product.entity";
+import { ProductDto } from "./dto/producto.dto";
 import { ProductService } from "./product.service";
 
-@Controller('api/products')
+@Controller('products')
 export class ProductController {
   constructor(private readonly productService: ProductService) { }
 
   //* Creas un producto.
   @Post('newProduct')
-  public crear(@Body() data: ProductEntity) {
-    return this.productService.crear(data);
+  public async create(@Body() dataProducto: ProductDto) {
+    return await this.productService.crearProducto(dataProducto);
   }
 
   //* Obtienes todos los productos.
-  @Get('allproducts')
-  public buscar(): Promise<ProductEntity[]>{
-    return this.productService.buscar();
+  @Get()
+  public async get(): Promise<ProductEntity[]>{
+    return await this.productService.buscarAll();
   }
 
-  //* Obtienes solo un producto.
-  @Get('oneproduct/:id')
-  public buscarid(@Param('id', ParseIntPipe) id: number): Promise<ProductEntity | null>{
-    return this.productService.buscarid(id);
+  //* Obtienes solo un producto por ID.
+  @Get(':id')
+  public async getOne(@Param('id', ParseIntPipe) id: number): Promise<ProductEntity | null>{
+    return await this.productService.buscarid(id);
+  }
+
+  //*Obtener solo un producto por nombre.
+  @Get(':name')
+  public async getName(@Param('name') name: string): Promise<ProductEntity | null> {
+    return await this.productService.buscarName(name);
   }
   
   //* Actualizas un producto.
   @Put(':id')
-  public actualizar(@Param('id') id:number,@Body() data: ProductEntity) {
-    return this.productService.actualizar(id, data);
+  public async update(@Param('id', ParseIntPipe) id: number, @Body() dataProducto: ProductDto) {
+    return await this.productService.actualizar(id, dataProducto);
   }
 
   //* Eliminas un producto.
   @Delete(':id')
-  public eliminar(@Param('id') id: number) {
-    return this.productService.eliminar(id);
+  public async delete(@Param('id', ParseIntPipe) id: number) {
+    return await this.productService.eliminar(id);
   }
 }

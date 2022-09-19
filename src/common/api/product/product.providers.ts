@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { DataSource } from 'typeorm';
 import { ProductEntity } from 'src/common/entities/product.entity';
 

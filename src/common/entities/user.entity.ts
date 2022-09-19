@@ -1,18 +1,20 @@
-/* eslint-disable prettier/prettier */
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('users')
+@Entity({name:'Usuarios'})
 export class UserEntity {
   //* Aqui ira todas las variables que tendran los usuarios.
 
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   public id: number;
 
   @Column({ type: "varchar", nullable: true })
   public name: string;
 
-  @Column({ type: "varchar", length: 20, unique: true, nullable: false })
+  @Column({ type: "varchar", length: 30, unique: true, nullable: false })
   public username: string;
+
+  @Column({ type: "varchar", unique: true, nullable: false })
+  public email: string;
 
   @Column({ type: "varchar", nullable: false })
   public password: string;

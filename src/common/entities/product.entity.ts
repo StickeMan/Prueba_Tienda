@@ -1,7 +1,6 @@
-/* eslint-disable prettier/prettier */
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('products')
+@Entity({name:'Productos'})
 export class ProductEntity {
   //* Aqui ira todas las variables que tendran los productos.
   
@@ -12,22 +11,25 @@ export class ProductEntity {
   public name: string;
 
   @Column()
-  //? Esta bien definido?
-  public price_no_iva: number;
+  public precio: number;
 
   @Column()
   //? Esta bien definido?
-  public price_iva: number;
+  public IVA: number;
+
+  @Column()
+  //? Esta bien definido?
+  public no_IVA: number;
 
   @Column({ type: Date })
-  public expiration_date: Date;
+  private expiration_date: Date;
 
   @Column()
-  public Notes: string;
+  private Notes: string;
 
   @Column()
-  public stock: number;
+  private stock: number;
 
   @Column({ default: true })
-  public isActive: boolean;
+  private isActive: boolean;
 }
