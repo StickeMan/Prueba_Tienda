@@ -1,8 +1,11 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { ProductEntity } from "src/common/entities/product.entity";
 import { ProductDto } from "./dto/producto.dto";
 import { ProductService } from "./product.service";
 
+@ApiBearerAuth()
+@ApiTags('products')
 @Controller('products')
 export class ProductController {
   constructor(private readonly productService: ProductService) { }

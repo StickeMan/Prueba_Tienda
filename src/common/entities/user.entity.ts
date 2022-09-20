@@ -10,10 +10,10 @@ export class UserEntity {
   @Column({ type: "varchar", nullable: true })
   public name: string;
 
-  @Column({ type: "varchar", length: 30, unique: true, nullable: false })
+  @Column({ type: "varchar", length: 25, unique: true, nullable: false })
   public username: string;
 
-  @Column({ type: "varchar", unique: true, nullable: false })
+  @Column({ type: "varchar", nullable: false })
   public email: string;
 
   @Column({ type: "varchar", nullable: false })
