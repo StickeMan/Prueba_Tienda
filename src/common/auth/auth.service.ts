@@ -15,6 +15,7 @@ export class AuthService {
     private jwService: JwtService
   ) { }
 
+  //*Method Register.
   public async registrarUsuario(userObject: RegisterAuthDto) {
     const salt = await bcrypt.genSalt();
 
@@ -24,6 +25,7 @@ export class AuthService {
     return this.authRepository.save(userObject);
   }
 
+  //*Method Login.
   public async loginUsuario(userObjectLogin: LoginAuthDto) {
     const { email, password } = userObjectLogin;
     const findUser = await this.authRepository.findOneBy({ email });
