@@ -7,6 +7,12 @@ import { ConfigService } from '@nestjs/config';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  //TODO Habilata los cors.
+  app.enableCors({
+    origin: 'http://localhost:3000',
+    methods: 'GET, POST, PUT, DELETE',
+  })
+
   const config = new DocumentBuilder()
     .addBearerAuth()
     .setTitle('My API documentation')
